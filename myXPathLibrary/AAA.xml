@@ -1,13 +1,32 @@
 <recipe>
-   <title>dd</title>
+   <title>
+      <ingredient>titleeeeee</ingredient>
+   </title>
    <composition>
       <ingredient>dsdf</ingredient>
+      <d>1 </d>
       <ingredient>dfd</ingredient>
-      <ingredient>efd</ingredient>
+      <ingredient>
+         <d> 2</d>
+      </ingredient>
+      <lol>
+         <ingredient>
+         <d>3 </d>
+      </ingredient>
+      </lol>
    </composition>
    <instructions>
-     <step>gggggg</step>
-     <step>ffffffffffffffffff</step>
+      <recipe>
+         <title>
+            <ingredient>titleeeeee</ingredient>
+         </title>
+      </recipe>
+     <step>
+         <d>4 </d>
+     </step>
+     <step>
+         <d>5 </d>
+      </step>
      <step>qqqqq</step>
    </instructions>
 </recipe>

@@ -16,7 +16,7 @@ void XMLNode::DeleteAll()
 {
 	for (XMLNodeMapIter TmpItr = XMLChildNodes.begin(); TmpItr != XMLChildNodes.end(); ++TmpItr)
 	{
-		if (TmpItr->second != NULL)
+		if (TmpItr->second != nullptr)
 		{
 			if ((TmpItr->second->GetChildNodeCnt() != 0))
 				TmpItr->second->DeleteAll();
@@ -32,7 +32,7 @@ void XMLNode::ResetReading()
 {
 	for (XMLNodeMapIter TmpItr = XMLChildNodes.begin(); TmpItr != XMLChildNodes.end(); TmpItr++)
 	{
-		if (TmpItr->second != NULL)
+		if (TmpItr->second != nullptr)
 		{
 			if ((TmpItr->second->GetChildNodeCnt() != 0))
 				TmpItr->second->ResetReading();
@@ -85,8 +85,8 @@ void XMLNode::AddElementVal(string sKey, string sval)
 XMLRdr::XMLRdr(string sFileName)
 {
 	sDocName = sFileName;
-	XMLRootNode = NULL;
-	XMLTraverse = NULL;
+	XMLRootNode = nullptr;
+	XMLTraverse = nullptr;
 	if (ReadFile() == false)
 		cout << "Unable to open file";
 	else
@@ -97,7 +97,7 @@ XMLRdr::XMLRdr(string sFileName)
 bool XMLRdr::ReadFile()
 {
 	FILE *fp = fopen(sDocName.c_str(), "r+");
-	if (fp == NULL)
+	if (fp == nullptr)
 		return false;
 	char buf[1000];
 	while (fgets(buf, 1000, fp))
@@ -110,7 +110,7 @@ bool XMLRdr::ReadFile()
 			return false;
 		}
 	}
-	if (XMLTraverse != NULL)
+	if (XMLTraverse != nullptr)
 		return false;
 	fclose(fp);
 	return true;
@@ -139,7 +139,7 @@ bool XMLRdr::ProcessString(string sInput)
 		return true;
 	case '/':
 	{
-		if (XMLTraverse == NULL)
+		if (XMLTraverse == nullptr)
 			return false;
 		XMLTraverse->ResetNodeCntr();
 		XMLTraverse = XMLTraverse->GetParentNode();
@@ -164,9 +164,9 @@ bool XMLRdr::ProcessString(string sInput)
 		{
 			iTmp = sInput.find_first_of(" \t>");
 			string sNodeName = sInput.substr(0, iTmp);
-			if (XMLRootNode == NULL)
+			if (XMLRootNode == nullptr)
 			{
-				XMLRootNode = new XMLNode(sNodeName.c_str(), NULL);
+				XMLRootNode = new XMLNode(sNodeName.c_str(), nullptr);
 				XMLTraverse = XMLRootNode;
 			}
 			else
@@ -184,10 +184,10 @@ bool XMLRdr::ProcessString(string sInput)
 XMLRdr::~XMLRdr()
 {
 
-	if ((XMLRootNode == NULL) || (XMLNode::GetObjectCnt() == 0))
+	if ((XMLRootNode == nullptr) || (XMLNode::GetObjectCnt() == 0))
 		return;
 	DeleteAll();
-	if (XMLRootNode != NULL)
+	if (XMLRootNode != nullptr)
 		delete XMLRootNode;
 
 	if (!XMLNode::GetObjectCnt())

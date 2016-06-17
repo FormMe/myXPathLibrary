@@ -2,28 +2,33 @@
 
 #include "XMLreader.h"
 #include <vector>
+#include <fstream>
+#include <queue>
 
 
 class XPath
 {
-	enum SearchType{All, First};
+	enum SearchType{Deep, First};
 	typedef pair<string, SearchType> root;
 
 public:
 	XPath(string filename);
-	~XPath();
 
 	vector<string> Find(string command);
 
 private:
-	vector<root> roots;
-	string elemToFind;
+	queue<root> roots;
+	queue<XMLNode *> searchableNodes;
+	queue<XMLNode *> resultNodes;
 	string textToFind;
+	SearchType searchType;
+	ifstream fin;
 	XMLRdr XMLDoc;
-
-	void ParseCommand(string command);
-	XMLNode * SelectChildNode(root parent);
-
-
+	vector<string> result;
+	int rootInd;
+	
+	void ParseCommand(string command);	
+	bool SearchNode(const root &curRoot);
+	void CheckChildren(XMLNode *node, const root &curRoot);
 };
 
